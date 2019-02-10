@@ -3,6 +3,7 @@ from flask import send_from_directory
 from flask import request, url_for, redirect
 import googlemaps
 import math
+import requests
 
 
 app = Flask(__name__, static_folder='')
@@ -47,8 +48,12 @@ def getTemperatureByLoc():
             closest_sensor = s
 
     #Would eventually read temperature from closest_sensor - currently hardcoded.
-    temperature = str(520)
-    return temperature
+    # response = requests.get('http://10.22.255.197')
+    # temperature = '80'
+    # if response.ok:
+    #     temperature = str(response)
+    # return temperature
+    return str(50)
 
 @app.route('/dangerresult')
 def getDangerResult():
