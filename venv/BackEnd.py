@@ -35,7 +35,7 @@ for s in sensors:
         closest_sensor = s
 
 # Take measurements from sensor - make "prediction"
-#temperature = 
+#temperature =
 
 if (temperature > 800): #in celcius
     render_template('DangerResult.html')
