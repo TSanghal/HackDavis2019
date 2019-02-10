@@ -8,7 +8,7 @@ import math
 app = Flask(__name__, static_folder='')
 
 
-@app.route('/FrontEnd')
+@app.route('/frontend')
 def hello_world():
     return send_from_directory(app.static_folder, 'FrontEnd.html')
 
@@ -47,7 +47,7 @@ def getTemperatureByLoc():
             closest_sensor = s
 
     #Would eventually read temperature from closest_sensor - currently hardcoded.
-    temperature = str(50)
+    temperature = str(520)
     return temperature
 
 @app.route('/dangerresult')
