@@ -21,20 +21,27 @@ def getTemperatureByLoc():
     #Convert address into coordinates.
     geocode_result = gmaps.geocode(address)
 
+    user_lat = geocode_result[0]['geometry']['location']['lat']
+    user_lng = geocode_result[0]['geometry']['location']['lng']
+
     #List of all sensors - would eventually read from database.
     sensors = [
         ['Pavilion Sensor', gmaps.geocode('The Pavilion Davis, CA 95616')]
     ]
 
     #Calculates the distance between two pairs of coordinates.
-    def calc_distance(add, sens):
-        return math.sqrt((add[0] - sens[1]) ** 2 + (add[1] - sens[1]) ** 2)
+    def calc_distance(x1, y1, x2, y2):
+        return math.sqrt((x1 - x2) ** 2 + (y1 - y2) ** 2)
 
     #Find the sensor closest to the user.
     closest_sensor = sensors[0]
-    min_dist = calc_distance(geocode_result, sensors[0])
+    sens_lat = closest_sensor[1][0]['geometry']['location']['lat']
+    sens_lng = closest_sensor[1][0]['geometry']['location']['lng']
+    min_dist = calc_distance(user_lat, user_lng, sens_lat, sens_lng)
     for s in sensors:
-        dist = calc_distance(geocode_result, s)
+        s_lat = s[1][0]['geometry']['location']['lat']
+        s_lng = s[1][0]['geometry']['location']['lng']
+        dist = calc_distance(user_lat, user_lng, s_lat, s_lng)
         if dist < min_dist:
             min_dist = dist
             closest_sensor = s
