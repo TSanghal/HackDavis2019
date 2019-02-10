@@ -53,7 +53,7 @@ def getTemperatureByLoc():
     # if response.ok:
     #     temperature = str(response)
     # return temperature
-    return str(50)
+    return str(250)
 
 @app.route('/dangerresult')
 def getDangerResult():
